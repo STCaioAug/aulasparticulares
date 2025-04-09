@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %} - {% if guardian %}Editar{% else %}Novo{% endif %} Responsável{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="page-header">
+            <i class="fas fa-user-friends me-2"></i> {% if guardian %}Editar{% else %}Novo{% endif %} Responsável
+        </h1>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('edit_guardian', id=guardian.id) if guardian else url_for('new_guardian') }}">
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label for="name" class="form-label required-field">Nome</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ guardian.name if guardian else '' }}" required>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ guardian.email if guardian else '' }}">
+                </div>
+                <div class="col-md-6">
+                    <label for="phone" class="form-label">Telefone</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" value="{{ guardian.phone if guardian else '' }}">
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label for="whatsapp" class="form-label">Link do WhatsApp</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fab fa-whatsapp"></i></span>
+                        <input type="text" class="form-control" id="whatsapp" name="whatsapp" 
+                               value="{{ guardian.whatsapp if guardian else '' }}" 
+                               placeholder="https://wa.me/551199999999">
+                        <button class="btn btn-outline-secondary" type="button" id="generate-whatsapp">
+                            Gerar do Telefone
+                        </button>
+                    </div>
+                    <small class="text-muted">Formato: https://wa.me/códigodopaístelefone (sem espaços ou caracteres especiais)</small>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label for="address" class="form-label">Endereço</label>
+                    <textarea class="form-control" id="address" name="address" rows="2">{{ guardian.address if guardian else '' }}</textarea>
+                </div>
+            </div>
+            
+            {% if guardian and guardian.students %}
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label class="form-label">Alunos Associados</label>
+                        <ul class="list-group">
+                            {% for student in guardian.students %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{ student.name }}
+                                    <a href="{{ url_for('edit_student', id=student.id) }}" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+            
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-between">
+                    <a href="{{ url_for('list_guardians') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-1"></i> Voltar
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-1"></i> Salvar Responsável
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
