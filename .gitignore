@@ -27,25 +27,28 @@ instance/
 # Virtual Environment
 venv/
 ENV/
-env/
+.env
 
-# IDE
+# IDE files
 .idea/
 .vscode/
 *.swp
 *.swo
 
-# Local environment
-.env
-.replit/
-
-# Database
+# SQLite database files
 *.db
+*.sqlite
 *.sqlite3
 
-# OS files
-.DS_Store
-Thumbs.db
+# Logs
+logs/
+*.log
 
-# Render specific
-.render/
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

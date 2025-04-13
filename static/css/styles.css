@@ -1,29 +1,54 @@
-/* Custom styles for the Flask application */
+/* Custom styles for Aulas Particulares Caio */
 
-/* Using Bootstrap's dark theme variables for consistency */
-:root {
-  /* Additional custom variables if needed */
-}
+/* Apply a bit of custom styling while respecting the Replit dark theme */
 
-/* Use minimal custom styles, as recommended by the guidelines */
-/* Most styling should come from Bootstrap classes */
-
+/* Dashboard cards */
 .card {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
+    border-radius: 0.5rem;
 }
 
 .card:hover {
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
 }
 
-/* Additional spacing for better readability */
+/* Apply Replit-specific styles to match the dark theme */
+.bg-dark {
+    background-color: var(--bs-gray-800) !important;
+}
+
+/* Add some spacing to the main content */
 main.container {
-  min-height: calc(100vh - 260px);
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
+/* Make tables more readable in dark mode */
+.table {
+    --bs-table-color: var(--bs-light);
+    --bs-table-hover-color: var(--bs-light);
+}
+
+/* Improve form controls in dark mode */
+.form-control, .form-select {
+    background-color: var(--bs-gray-800);
+    color: var(--bs-light);
+    border-color: var(--bs-gray-700);
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: var(--bs-gray-800);
+    color: var(--bs-light);
+    border-color: var(--bs-primary);
+}
+
+/* Improve navbar appearance */
+.navbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer styling */
 footer {
-  margin-top: auto;
+    margin-top: auto;
+    border-top: 1px solid var(--bs-gray-700);
 }

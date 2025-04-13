@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if student %}Editar Aluno{% else %}Novo Aluno{% endif %} - Aulas Particulares Caio
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">{% if student %}Editar Aluno{% else %}Novo Aluno{% endif %}</h1>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="name" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="name" name="name" 
+                           value="{{ student.name if student else '' }}" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="age" class="form-label">Idade</label>
+                    <input type="number" class="form-control" id="age" name="age" 
+                           value="{{ student.age if student and student.age else '' }}">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="grade" class="form-label">Série</label>
+                    <input type="text" class="form-control" id="grade" name="grade" 
+                           value="{{ student.grade if student else '' }}">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="school" class="form-label">Escola</label>
+                    <input type="text" class="form-control" id="school" name="school" 
+                           value="{{ student.school if student else '' }}">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="whatsapp" class="form-label">WhatsApp</label>
+                    <input type="text" class="form-control" id="whatsapp" name="whatsapp" 
+                           value="{{ student.whatsapp if student else '' }}" 
+                           placeholder="Ex: +5511999998888">
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="guardian_id" class="form-label">Responsável Principal</label>
+                <select class="form-select" id="guardian_id" name="guardian_id">
+                    <option value="">Selecione um responsável</option>
+                    {% for guardian in guardians %}
+                    <option value="{{ guardian.id }}" 
+                            {% if student and student.guardian_id == guardian.id %}selected{% endif %}>
+                        {{ guardian.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="mb-3">
+                <label for="notes" class="form-label">Observações</label>
+                <textarea class="form-control" id="notes" name="notes" rows="3">{{ student.notes if student else '' }}</textarea>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+                <a href="{{ url_for('list_students') }}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

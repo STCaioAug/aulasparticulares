@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Aulas Particulares Caio{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">Dashboard</h1>
+    </div>
+</div>
+
+<!-- Estatísticas -->
+<div class="row mb-4">
+    <div class="col-md-3 mb-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h5 class="card-title">Alunos</h5>
+                <h2 class="display-4">{{ student_count }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h5 class="card-title">Responsáveis</h5>
+                <h2 class="display-4">{{ guardian_count }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <h5 class="card-title">Aulas Agendadas</h5>
+                <h2 class="display-4">{{ upcoming_lessons|length }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <h5 class="card-title">Pagamentos (Mês)</h5>
+                <h2 class="display-4">R$ {{ total_payments }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Agenda Semanal -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">Agenda Semanal</h5>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Dia</th>
+                                <th>Aulas Fixas</th>
+                                <th>Aulas Extras</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for dia, info in agenda_semana.items() %}
+                            <tr>
+                                <td><strong>{{ dias_semana[dia] }}</strong></td>
+                                <td>
+                                    {% if info.fixed %}
+                                    <ul class="list-unstyled">
+                                        {% for aula in info.fixed %}
+                                        <li>
+                                            <strong>{{ aula.aluno }}</strong>: {{ aula.horario }}
+                                            {% if aula.local %} ({{ aula.local }}){% endif %}
+                                            {% if aula.obs %} <span class="text-muted">- {{ aula.obs }}</span>{% endif %}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% else %}
+                                    <span class="text-muted">Nenhuma aula fixa</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if info.extra %}
+                                    <ul class="list-unstyled">
+                                        {% for aula in info.extra %}
+                                        <li>
+                                            <strong>{{ aula.aluno }}</strong>: {{ aula.horario }} 
+                                            {% if aula.data %}<span class="badge bg-info">{{ aula.data }}</span>{% endif %}
+                                            {% if aula.obs %} <span class="text-muted">- {{ aula.obs }}</span>{% endif %}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% else %}
+                                    <span class="text-muted">Nenhuma aula extra</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Próximas Aulas -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">Próximas Aulas (7 dias)</h5>
+            </div>
+            <div class="card-body">
+                {% if upcoming_lessons %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Horário</th>
+                                <th>Aluno</th>
+                                <th>Assunto</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for lesson in upcoming_lessons %}
+                            <tr>
+                                <td>{{ lesson.date.strftime('%d/%m/%Y') }}</td>
+                                <td>{{ lesson.start_time.strftime('%H:%M') }} - {{ lesson.end_time.strftime('%H:%M') }}</td>
+                                <td>{{ lesson.student.name }}</td>
+                                <td>
+                                    {{ lesson.subject }}
+                                    {% if lesson.topic %}<br>
+                                    <small class="text-muted">{{ lesson.topic }}</small>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if lesson.status == 'scheduled' %}
+                                    <span class="badge bg-primary">Agendada</span>
+                                    {% elif lesson.status == 'completed' %}
+                                    <span class="badge bg-success">Concluída</span>
+                                    {% elif lesson.status == 'cancelled' %}
+                                    <span class="badge bg-danger">Cancelada</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('edit_lesson', id=lesson.id) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted">Não há aulas agendadas para os próximos 7 dias.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

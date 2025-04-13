@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="pt-BR" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Flask Application{% endblock %}</title>
+    <title>{% block title %}Aulas Particulares Caio{% endblock %}</title>
     
     <!-- Bootstrap CSS (Replit-themed) -->
     <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
@@ -17,7 +17,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="{{ url_for('index') }}">Flask App</a>
+                <a class="navbar-brand" href="{{ url_for('dashboard') }}">Aulas Particulares Caio</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -25,9 +25,20 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                            <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
                         </li>
-                        <!-- Add more navigation items as needed -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('list_students') }}">Alunos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('list_guardians') }}">Responsáveis</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('list_lessons') }}">Aulas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('reports') }}">Relatórios</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -53,10 +64,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p>&copy; 2023 Flask App. All rights reserved.</p>
+                    <p>&copy; {{ current_year }} Aulas Particulares Caio. Todos os direitos reservados.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <p>Optimized for GitHub and Render.com</p>
+                    <p>Otimizado para GitHub e Render.com</p>
                 </div>
             </div>
         </div>

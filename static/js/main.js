@@ -1,38 +1,37 @@
 /**
- * Main JavaScript file for the Flask application
+ * Main JavaScript file for Aulas Particulares Caio
  */
 
-// Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('Application loaded successfully');
-  
-  // Initialize any components that need JavaScript
-  initializeTooltips();
-  setupAlertDismissal();
+    // Initialize Bootstrap tooltips
+    initializeTooltips();
+    
+    // Setup automatic alert dismissal after 5 seconds
+    setupAlertDismissal();
 });
 
 /**
  * Initialize Bootstrap tooltips
  */
 function initializeTooltips() {
-  const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-  tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl);
-  });
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl, {
+            boundary: document.body
+        });
+    });
 }
 
 /**
  * Setup automatic alert dismissal after 5 seconds
  */
 function setupAlertDismissal() {
-  const alerts = document.querySelectorAll('.alert:not(.alert-permanent)');
-  
-  alerts.forEach(alert => {
-    setTimeout(() => {
-      const bsAlert = new bootstrap.Alert(alert);
-      bsAlert.close();
-    }, 5000);
-  });
+    var alertList = document.querySelectorAll('.alert:not(.alert-permanent)');
+    alertList.forEach(function(alert) {
+        setTimeout(function() {
+            // Create a bootstrap alert object and close it
+            var bsAlert = new bootstrap.Alert(alert);
+            bsAlert.close();
+        }, 5000);
+    });
 }
-
-// Add more JavaScript functionality as needed
