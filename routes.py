@@ -1,3 +1,9 @@
+from flask import render_template, redirect, url_for
+
+def register_routes(app):
+    @app.route("/")
+    def index():
+        return "<h1>Bem-vindo ao sistema de aulas particulares!</h1>"
 from flask import render_template, request, redirect, url_for, flash, jsonify
 from datetime import datetime, date, timedelta
 from app import db
