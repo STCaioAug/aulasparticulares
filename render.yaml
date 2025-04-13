@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: flask-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        value: sqlite:///app.db
+        # For production, you might want to use a managed database service
+        # and set this variable in the Render dashboard

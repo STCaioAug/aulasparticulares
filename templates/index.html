@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Flask Application{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h1 class="card-title">Welcome to Flask Application</h1>
+            </div>
+            <div class="card-body">
+                <h5 class="card-subtitle mb-4">A Flask project optimized for GitHub and Render.com deployment</h5>
+                
+                <p class="card-text">
+                    This Flask application is structured for easy deployment to Render.com and includes all the necessary configuration files.
+                </p>
+                
+                <div class="alert alert-info">
+                    <h5>Project Features:</h5>
+                    <ul>
+                        <li>Proper Flask project structure</li>
+                        <li>Ready for GitHub repository</li>
+                        <li>Configured for Render.com deployment</li>
+                        <li>SQLAlchemy database integration</li>
+                        <li>User authentication support</li>
+                    </ul>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="https://render.com/docs" target="_blank" class="btn btn-primary me-2">Render.com Docs</a>
+                    <a href="https://flask.palletsprojects.com/" target="_blank" class="btn btn-secondary">Flask Docs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

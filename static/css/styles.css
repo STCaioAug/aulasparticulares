@@ -1,0 +1,29 @@
+/* Custom styles for the Flask application */
+
+/* Using Bootstrap's dark theme variables for consistency */
+:root {
+  /* Additional custom variables if needed */
+}
+
+/* Use minimal custom styles, as recommended by the guidelines */
+/* Most styling should come from Bootstrap classes */
+
+.card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Additional spacing for better readability */
+main.container {
+  min-height: calc(100vh - 260px);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+footer {
+  margin-top: auto;
+}
