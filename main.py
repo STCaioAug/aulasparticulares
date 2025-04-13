@@ -9,3 +9,9 @@ if __name__ == "__main__":
 
 # This file is a simple entrypoint for Render.com or other hosting services
 # The app instance is imported from app.py
+from app import app, init_app
+
+init_app(app)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
