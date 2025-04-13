@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %} - Calendário{% endblock %}
+
+{% block content %}
+<h1 class="mb-4"><i class="fas fa-calendar-alt me-2"></i> Calendário de Aulas</h1>
+
+<div id='calendar'></div>
+
+<!-- FullCalendar -->
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+
+<style>
+    #calendar {
+        background-color: #1f1f1f;
+        padding: 1rem;
+        border-radius: 10px;
+        color: #fff;
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar');
+
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,listWeek'
+        },
+        locale: 'pt-br',
+        height: 'auto',
+        events: {{ calendar_events|tojson }}
+    });
+
+    calendar.render();
+});
+</script>
+{% endblock %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar');
+
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,listWeek'
+        },
+        locale: 'pt-br',
+        height: 'auto',
+        events: {{ calendar_events|tojson }},
+        eventClick: function(info) {
+            info.jsEvent.preventDefault(); // evita abrir o link automaticamente
+
+            if (info.event.url) {
+                window.open(info.event.url, '_blank'); // abre a edição da aula em nova aba
+            }
+        }
+    });
+
+    calendar.render();
+});
+</script>
