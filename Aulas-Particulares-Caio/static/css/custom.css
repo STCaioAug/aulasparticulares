@@ -1,0 +1,82 @@
+/* Additional custom styles to complement Bootstrap */
+
+/* Dashboard cards */
+.dashboard-card {
+    transition: transform 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Custom page headers */
+.page-header {
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--bs-border-color);
+}
+
+/* Status badges */
+.status-scheduled {
+    background-color: var(--bs-info);
+}
+
+.status-completed {
+    background-color: var(--bs-success);
+}
+
+.status-cancelled {
+    background-color: var(--bs-danger);
+}
+
+/* Payment status */
+.payment-paid {
+    color: var(--bs-success);
+}
+
+.payment-unpaid {
+    color: var(--bs-warning);
+}
+
+/* Table hover effects */
+.table-hover tbody tr:hover {
+    background-color: rgba(var(--bs-info-rgb), 0.15);
+}
+
+/* Form elements */
+.required-field::after {
+    content: '*';
+    color: var(--bs-danger);
+    margin-left: 0.2rem;
+}
+
+/* Filter inputs */
+.filter-container {
+    margin-bottom: 1.5rem;
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* Custom scrollbar for tables */
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: var(--bs-dark);
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: var(--bs-secondary);
+    border-radius: 4px;
+}

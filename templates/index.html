@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Flask Application{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">Welcome to Flask Application</h1>
+                    <p class="lead text-center">A well-structured Flask project ready for GitHub and Render.com deployment.</p>
+                    
+                    <hr class="my-4">
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">GitHub Ready</h5>
+                                    <p class="card-text">This project follows best practices for version control with Git and GitHub.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Deploy to Render.com</h5>
+                                    <p class="card-text">Configured for simple deployment to the Render.com platform.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Structured Project</h5>
+                                    <p class="card-text">Organized with proper directory structure and separation of concerns.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Local Development</h5>
+                                    <p class="card-text">Easy to run locally with simple setup instructions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <a href="https://github.com/yourusername/flask-app" class="btn btn-secondary me-2">
+                            View on GitHub
+                        </a>
+                        <a href="https://render.com/docs" class="btn btn-info">
+                            Render.com Documentation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
